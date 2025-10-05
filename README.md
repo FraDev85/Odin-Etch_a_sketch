@@ -1,2 +1,3 @@
 # Odin-Etch_a_sketch
-simple skecthpad 
+
+simple sketch pad

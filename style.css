@@ -25,12 +25,17 @@ body {
 .tools-container input {
   border-radius: 6px;
   width: 15%;
+  min-width: 80px;
   background-color: #f0904c;
   color: #222;
+  padding: 6px 10px;
+  font-size: 0.9rem;
+  transition: background 0.3s;
 }
 
 .tools-container :hover {
   cursor: pointer;
+  background-color: #ffb36a;
 }
 
 .resolutionContainer {
@@ -39,6 +44,13 @@ body {
   gap: 10px;
   align-items: center;
   width: 100%;
+}
+
+.areaDrawing {
+  margin: auto;
+  width: 90%;
+  max-width: 600px;
+  aspect-ratio: 1 / 1;
 }
 
 #slider {
@@ -80,4 +92,52 @@ body {
     #ccc var(--valore, 50%)
   );
   border-radius: 5px;
+}
+
+@media (max-width: 620px) {
+  body {
+    height: auto;
+    padding: 10px;
+    gap: 1.2rem;
+  }
+
+  .tools-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .tools-container button,
+  .tools-container input {
+    width: 28%;
+    font-size: 0.7rem;
+  }
+
+  #slider {
+    width: 70%;
+  }
+}
+
+@media (max-width: 360px) {
+  body {
+    height: auto;
+    padding: 8px;
+    gap: 1.4rem;
+  }
+
+  .tools-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+  }
+
+  #slider {
+    width: 85%;
+  }
+
+  .tools-container button,
+  .tools-container input {
+    width: 80%;
+    font-size: 0.6rem;
+  }
 }

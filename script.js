@@ -1,9 +1,10 @@
 const slider = document.getElementById("slider");
 const colorInput = document.getElementById("colorPicker");
-const gridSize = 600;
+let gridSize = Math.min(window.innerWidth * 0.9, 600);
 let eraseMode = false;
 let draw = false;
 let squareSize = undefined;
+let newColor = colorInput.value;
 const areaDrawing = document.querySelector(".areaDrawing");
 const reset = document.querySelector("#reset");
 const textResolution = document.querySelector("span");
@@ -23,8 +24,6 @@ areaDrawing.addEventListener("mouseup", () => {
   draw = false;
 });
 
-let newColor = colorInput.value;
-
 colorInput.addEventListener("input", () => {
   const colorValue = colorInput.value;
   const r = parseInt(colorValue.slice(1, 3), 16);
@@ -38,13 +37,14 @@ colorInput.addEventListener("input", () => {
 
 function createCells(squareSize) {
   areaDrawing.innerHTML = "";
+  const gridSize = areaDrawing.offsetWidth;
 
   for (let i = 0; i < squareSize * squareSize; i++) {
     const cell = document.createElement("div");
 
-    cell.style.width = cell.style.height = `${
-      Math.floor(gridSize / squareSize) - 1
-    }px`;
+    const cellSize = Math.floor(gridSize / squareSize);
+    cell.style.width = `${cellSize}px`;
+    cell.style.height = `${cellSize}px`;
     cell.classList.add("cell");
 
     cell.addEventListener("mouseover", () => {
@@ -110,3 +110,10 @@ slider.style.setProperty("--valore", `${val}%`);
 squareSize = parseInt(slider.value);
 textResolution.textContent = `${squareSize} x ${squareSize}`;
 createCells(squareSize);
+
+window.addEventListener("resize", () => {
+  gridSize = Math.min(window.innerWidth * 0.9, 600);
+  areaDrawing.style.width = `${gridSize}px`;
+  areaDrawing.style.height = `${gridSize}px`;
+  createCells(squareSize);
+});

@@ -15,6 +15,7 @@ areaDrawing.style.height = `${gridSize}px`;
 areaDrawing.style.border = "1px solid teal";
 areaDrawing.style.display = "flex";
 areaDrawing.style.flexWrap = "wrap";
+areaDrawing.style.cursor = "crosshair";
 areaDrawing.addEventListener("mousedown", () => {
   draw = true;
 });
@@ -95,5 +96,17 @@ randomColor.addEventListener("click", () => {
 
 erase.addEventListener("click", () => {
   eraseMode = !eraseMode;
-  areaDrawing.style.cursor = eraseMode ? "crosshair" : "default";
+  areaDrawing.style.cursor = eraseMode
+    ? "url('eraser.png'), auto"
+    : "crosshair";
 });
+
+// when page is loaded
+
+slider.value = 16;
+
+const val = ((slider.value - slider.min) / (slider.max - slider.min)) * 100;
+slider.style.setProperty("--valore", `${val}%`);
+squareSize = parseInt(slider.value);
+textResolution.textContent = `${squareSize} x ${squareSize}`;
+createCells(squareSize);
